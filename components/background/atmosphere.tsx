@@ -1,6 +1,13 @@
 "use client";
 
-import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useSpring,
+  useTransform,
+  useReducedMotion,
+  type MotionValue,
+} from "framer-motion";
 import type { ReactNode } from "react";
 
 import { useMouseParallax } from "@/hooks/use-mouse-parallax";
@@ -29,8 +36,17 @@ function Layer({ x, y, className, children }: LayerProps) {
 }
 
 export function Atmosphere() {
+  const reduce = useReducedMotion();
   const { x, y } = useMouseParallax();
   const { scrollYProgress } = useScroll();
+
+  const zoomRaw = useTransform(scrollYProgress, [0, 1], [1.22, 1.02]);
+  const zoomSpring = useSpring(zoomRaw, {
+    stiffness: 80,
+    damping: 30,
+    mass: 0.5,
+  });
+  const scale = reduce ? 1 : zoomSpring;
 
   const useDepth = (mouseDepth: number, scrollDepth: number) => {
     const mx = useTransform(x, [-0.5, 0.5], [-mouseDepth, mouseDepth]);
@@ -54,6 +70,7 @@ export function Atmosphere() {
 
   return (
     <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-night">
+      <motion.div style={{ scale }} className="absolute inset-0 origin-center">
       <Layer x={sky.x} y={sky.y} className="absolute inset-[-6%]">
         <Sky />
       </Layer>
@@ -106,6 +123,7 @@ export function Atmosphere() {
       <Layer x={dust.x} y={dust.y} className="absolute inset-0">
         <Particles />
       </Layer>
+      </motion.div>
 
       <GrainOverlay />
       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-night to-transparent" />
