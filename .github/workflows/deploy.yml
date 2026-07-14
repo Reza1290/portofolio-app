@@ -37,6 +37,7 @@ jobs:
         run: npm run build
         env:
           NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
+          NODE_OPTIONS: --max-old-space-size=4096
 
       - name: Disable Jekyll processing
         run: touch out/.nojekyll
