@@ -18,7 +18,7 @@ export function Contact() {
         initial="hidden"
         whileInView="visible"
         viewport={viewportOnce}
-        className="relative flex flex-col items-center gap-10 overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/[0.03] px-6 py-20 text-center shadow-2xl shadow-night/50 backdrop-blur-md sm:px-16"
+        className="panel relative flex flex-col items-center gap-10 overflow-hidden rounded-[2.5rem] px-6 py-20 text-center sm:px-16"
       >
         <div className="absolute -top-24 left-1/2 -z-10 size-72 -translate-x-1/2 rounded-full bg-sunrise/15 blur-[100px]" />
 

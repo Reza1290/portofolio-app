@@ -43,7 +43,7 @@ function ProjectVisual({ project }: { project: Project }) {
             {project.tech.slice(0, 4).map((tech) => (
               <span
                 key={tech}
-                className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70 backdrop-blur-md"
+                className="rounded-full border border-white/10 bg-night/50 px-3 py-1 text-xs text-white/70"
               >
                 {tech}
               </span>

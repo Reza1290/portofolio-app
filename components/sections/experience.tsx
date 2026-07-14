@@ -59,7 +59,7 @@ export function Experience() {
                 <span className="text-xs text-white/40">{item.employment}</span>
               </div>
 
-              <div className="group flex flex-col gap-4 rounded-3xl border border-white/10 bg-white/[0.03] p-7 shadow-xl shadow-night/30 backdrop-blur-md transition-all duration-700 ease-[var(--ease-out-quart)] hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.06] md:ml-10">
+              <div className="panel panel-interactive group flex flex-col gap-4 rounded-3xl p-7 md:ml-10">
                 <div className="flex flex-col gap-1">
                   <div className="flex items-center gap-2 text-sunrise/70">
                     <Briefcase className="size-4" />

@@ -38,7 +38,7 @@ export function Certifications() {
               <motion.li
                 key={cert.title}
                 variants={fadeUp}
-                className="group flex items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 backdrop-blur-md transition-all duration-500 ease-[var(--ease-out-quart)] hover:border-white/20 hover:bg-white/[0.06]"
+                className="panel panel-interactive group flex items-center justify-between gap-4 rounded-2xl px-5 py-4"
               >
                 <div className="flex flex-col gap-0.5">
                   <span className="text-base text-white/90">{cert.title}</span>
@@ -68,7 +68,7 @@ export function Certifications() {
               <motion.li
                 key={item.title}
                 variants={fadeUp}
-                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 backdrop-blur-md transition-all duration-500 ease-[var(--ease-out-quart)] hover:border-sunrise/25 hover:bg-white/[0.06]"
+                className="panel panel-interactive group relative overflow-hidden rounded-2xl px-5 py-4"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex flex-col gap-0.5">

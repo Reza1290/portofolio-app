@@ -24,7 +24,7 @@ export function Hero() {
       >
         <motion.div
           variants={fadeUp}
-          className="flex w-fit items-center gap-2.5 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/70 backdrop-blur-md"
+          className="flex w-fit items-center gap-2.5 rounded-full border border-white/10 bg-deep/50 px-4 py-2 text-sm text-white/70"
         >
           <span className="relative flex size-2">
             <span className="absolute inline-flex size-full animate-ping rounded-full bg-sunrise/70 opacity-75" />
