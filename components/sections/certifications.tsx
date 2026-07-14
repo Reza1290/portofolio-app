@@ -4,10 +4,9 @@ import { motion } from "framer-motion";
 import { Award, BadgeCheck } from "lucide-react";
 
 import { achievements, certifications } from "@/lib/data";
-import { fadeUp, stagger, staggerFast, viewportOnce } from "@/lib/motion";
+import { fadeUp, staggerFast, viewportOnce } from "@/lib/motion";
 import { Section } from "@/components/section";
 import { SectionHeading } from "@/components/section-heading";
-import { Badge } from "@/components/ui/badge";
 
 export function Certifications() {
   return (
@@ -19,11 +18,11 @@ export function Certifications() {
         className="mb-16"
       />
 
-      <div className="grid gap-8 lg:grid-cols-2 lg:gap-14">
+      <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">
         <div className="flex flex-col gap-6">
-          <div className="flex items-center gap-3 text-white/80">
-            <BadgeCheck className="size-5 text-sky" />
-            <h3 className="font-display text-lg font-semibold">
+          <div className="flex items-center gap-3 text-white/60">
+            <BadgeCheck className="size-4 text-sky" />
+            <h3 className="font-mono text-xs uppercase tracking-[0.28em]">
               Certifications
             </h3>
           </div>
@@ -32,55 +31,57 @@ export function Certifications() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportOnce}
-            className="flex flex-col gap-3"
+            className="border-t border-white/10"
           >
             {certifications.map((cert) => (
               <motion.li
                 key={cert.title}
                 variants={fadeUp}
-                className="panel panel-interactive group flex items-center justify-between gap-4 rounded-2xl px-5 py-4"
+                className="group flex items-baseline justify-between gap-4 border-b border-white/10 py-4 transition-colors duration-500"
               >
                 <div className="flex flex-col gap-0.5">
-                  <span className="text-base text-white/90">{cert.title}</span>
-                  <span className="text-sm text-white/50">{cert.issuer}</span>
+                  <span className="text-base text-white/90 transition-colors duration-500 group-hover:text-sunrise">
+                    {cert.title}
+                  </span>
+                  <span className="text-sm text-white/45">{cert.issuer}</span>
                 </div>
-                <Badge variant="outline">{cert.year}</Badge>
+                <span className="font-mono text-sm text-white/50">
+                  {cert.year}
+                </span>
               </motion.li>
             ))}
           </motion.ul>
         </div>
 
         <div className="flex flex-col gap-6">
-          <div className="flex items-center gap-3 text-white/80">
-            <Award className="size-5 text-sunrise" />
-            <h3 className="font-display text-lg font-semibold">
+          <div className="flex items-center gap-3 text-white/60">
+            <Award className="size-4 text-sunrise" />
+            <h3 className="font-mono text-xs uppercase tracking-[0.28em]">
               Awards & achievements
             </h3>
           </div>
           <motion.ul
-            variants={stagger}
+            variants={staggerFast}
             initial="hidden"
             whileInView="visible"
             viewport={viewportOnce}
-            className="flex flex-col gap-3"
+            className="border-t border-white/10"
           >
             {achievements.map((item) => (
               <motion.li
                 key={item.title}
                 variants={fadeUp}
-                className="panel panel-interactive group relative overflow-hidden rounded-2xl px-5 py-4"
+                className="group flex items-baseline justify-between gap-6 border-b border-white/10 py-4"
               >
-                <div className="flex items-start justify-between gap-4">
-                  <div className="flex flex-col gap-0.5">
-                    <span className="text-base text-white/90">
-                      {item.title}
-                    </span>
-                    <span className="text-sm text-white/50">
-                      {item.context}
-                    </span>
-                  </div>
-                  <Badge variant="accent">{item.scope}</Badge>
+                <div className="flex flex-col gap-0.5">
+                  <span className="text-base text-white/90 transition-colors duration-500 group-hover:text-sunrise">
+                    {item.title}
+                  </span>
+                  <span className="text-sm text-white/45">{item.context}</span>
                 </div>
+                <span className="shrink-0 font-mono text-xs uppercase tracking-wider text-dawn/70">
+                  {item.scope}
+                </span>
               </motion.li>
             ))}
           </motion.ul>

@@ -1,13 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Languages as LanguagesIcon } from "lucide-react";
 
 import { languages, skillGroups } from "@/lib/data";
-import { fadeUp, scaleReveal, stagger, viewportOnce } from "@/lib/motion";
+import { fadeUp, stagger, viewportOnce } from "@/lib/motion";
 import { Section } from "@/components/section";
 import { SectionHeading } from "@/components/section-heading";
-import { Badge } from "@/components/ui/badge";
 
 export function Skills() {
   return (
@@ -24,54 +22,63 @@ export function Skills() {
         initial="hidden"
         whileInView="visible"
         viewport={viewportOnce}
-        className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+        className="border-t border-white/10"
       >
-        {skillGroups.map((group) => (
+        {skillGroups.map((group, index) => (
           <motion.div
             key={group.title}
-            variants={scaleReveal}
-            className="panel panel-interactive group flex flex-col gap-5 rounded-3xl p-7"
+            variants={fadeUp}
+            className="grid gap-x-10 gap-y-4 border-b border-white/10 py-8 md:grid-cols-[16rem_1fr]"
           >
-            <h3 className="font-display text-lg font-semibold text-white">
-              {group.title}
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {group.items.map((item) => (
-                <Badge key={item}>{item}</Badge>
+            <div className="flex items-baseline gap-4">
+              <span className="font-mono text-sm text-sunrise/70">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <h3 className="font-display text-2xl font-medium text-white">
+                {group.title}
+              </h3>
+            </div>
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[17px] text-white/70">
+              {group.items.map((item, itemIndex) => (
+                <span key={item} className="flex items-center gap-4">
+                  {itemIndex > 0 ? (
+                    <span aria-hidden className="text-white/20">
+                      /
+                    </span>
+                  ) : null}
+                  <span className="transition-colors duration-500 hover:text-white">
+                    {item}
+                  </span>
+                </span>
               ))}
             </div>
           </motion.div>
         ))}
-      </motion.div>
 
-      <motion.div
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="visible"
-        viewport={viewportOnce}
-        className="panel mt-8 flex flex-col gap-6 rounded-3xl p-7 sm:flex-row sm:items-center sm:justify-between"
-      >
-        <div className="flex items-center gap-3">
-          <span className="flex size-11 items-center justify-center rounded-full bg-sunrise/15 text-sunrise ring-1 ring-sunrise/25">
-            <LanguagesIcon className="size-5" />
-          </span>
-          <h3 className="font-display text-lg font-semibold text-white">
-            Languages I speak
-          </h3>
-        </div>
-        <div className="flex flex-wrap gap-x-8 gap-y-4">
-          {languages.map((language) => (
-            <div key={language.language} className="flex flex-col gap-0.5">
-              <span className="text-base text-white/90">
-                {language.language}
-              </span>
-              <span className="text-sm text-white/50">
-                {language.level}
-                {language.note ? ` - ${language.note}` : ""}
-              </span>
-            </div>
-          ))}
-        </div>
+        <motion.div
+          variants={fadeUp}
+          className="grid gap-x-10 gap-y-4 py-8 md:grid-cols-[16rem_1fr]"
+        >
+          <div className="flex items-baseline gap-4">
+            <span className="font-mono text-sm text-sunrise/70">*</span>
+            <h3 className="font-display text-2xl font-medium text-white">
+              Languages
+            </h3>
+          </div>
+          <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
+            {languages.map((language) => (
+              <div key={language.language} className="flex items-baseline gap-2">
+                <span className="text-[17px] text-white/85">
+                  {language.language}
+                </span>
+                <span className="text-sm text-white/45">
+                  {language.level}
+                  {language.note ? ` · ${language.note}` : ""}
+                </span>
+              </div>
+            ))}
+          </div>
+        </motion.div>
       </motion.div>
     </Section>
   );

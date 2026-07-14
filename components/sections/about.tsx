@@ -78,18 +78,20 @@ export function About() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportOnce}
-            className="grid grid-cols-1 gap-3 sm:grid-cols-2"
+            className="border-t border-white/10"
           >
             {aboutFacts.map((fact) => (
               <motion.div
                 key={fact.label}
                 variants={fadeUp}
-                className="flex flex-col gap-1.5 rounded-2xl bg-surface p-6"
+                className="flex items-baseline justify-between gap-6 border-b border-white/10 py-4"
               >
                 <dt className="font-mono text-xs uppercase tracking-[0.25em] text-sunrise/70">
                   {fact.label}
                 </dt>
-                <dd className="text-base text-white/85">{fact.value}</dd>
+                <dd className="text-right text-base text-white/85">
+                  {fact.value}
+                </dd>
               </motion.div>
             ))}
           </motion.dl>

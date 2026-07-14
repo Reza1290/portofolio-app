@@ -15,7 +15,7 @@ import { Magnetic } from "@/components/magnetic";
 
 function ProjectVisual({ project }: { project: Project }) {
   return (
-    <div className="relative aspect-[16/11] w-full overflow-hidden rounded-[1.75rem]">
+    <div className="relative aspect-[16/11] w-full overflow-hidden rounded-tl-[2.75rem] rounded-br-[2.75rem]">
       <div
         className="absolute inset-0"
         style={{
