@@ -8,6 +8,7 @@ import { EASE_OUT_QUART, fadeUp, stagger } from "@/lib/motion";
 import { Button } from "@/components/ui/button";
 import { SocialLinks } from "@/components/social-links";
 import { Magnetic } from "@/components/magnetic";
+import { Comet } from "@/components/comet";
 
 export function Hero() {
   return (
@@ -24,16 +25,15 @@ export function Hero() {
       >
         <motion.div
           variants={fadeUp}
-          className="panel flex w-fit items-center gap-2.5 rounded-full px-4 py-2 text-sm text-white/70"
+          className="flex w-fit items-center gap-3 text-sm text-white/75"
         >
-          <span className="relative flex size-2">
-            <span className="absolute inline-flex size-full animate-ping rounded-full bg-sunrise/70 opacity-75" />
-            <span className="relative inline-flex size-2 rounded-full bg-sunrise" />
+          <Comet />
+          <span className="tracking-wide">Available for new work</span>
+          <span className="h-4 w-px bg-white/15" />
+          <span className="inline-flex items-center gap-1.5 text-white/55">
+            <MapPin className="size-3.5" />
+            {profile.location}
           </span>
-          Available for new work
-          <span className="mx-1 h-4 w-px bg-white/15" />
-          <MapPin className="size-3.5 text-white/50" />
-          {profile.location}
         </motion.div>
 
         <div className="flex flex-col gap-4">
