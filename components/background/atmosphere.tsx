@@ -3,9 +3,7 @@
 import {
   motion,
   useScroll,
-  useSpring,
   useTransform,
-  useReducedMotion,
   type MotionValue,
 } from "framer-motion";
 import type { ReactNode } from "react";
@@ -36,17 +34,11 @@ function Layer({ x, y, className, children }: LayerProps) {
 }
 
 export function Atmosphere() {
-  const reduce = useReducedMotion();
   const { x, y } = useMouseParallax();
   const { scrollYProgress } = useScroll();
 
-  const zoomRaw = useTransform(scrollYProgress, [0, 1], [1.22, 1.02]);
-  const zoomSpring = useSpring(zoomRaw, {
-    stiffness: 80,
-    damping: 30,
-    mass: 0.5,
-  });
-  const scale = reduce ? 1 : zoomSpring;
+  const dusk = useTransform(scrollYProgress, [0, 0.55, 1], [0, 0.42, 0.82]);
+  const sunFade = useTransform(scrollYProgress, [0, 0.4], [1, 0.15]);
 
   const useDepth = (mouseDepth: number, scrollDepth: number) => {
     const mx = useTransform(x, [-0.5, 0.5], [-mouseDepth, mouseDepth]);
@@ -56,28 +48,29 @@ export function Atmosphere() {
     return { x: mx, y: combinedY };
   };
 
-  const sky = useDepth(8, 0);
-  const sun = useDepth(16, 30);
-  const cloudsFar = useDepth(20, 50);
-  const cloudsNear = useDepth(38, 90);
-  const ridgeFar = useDepth(14, 60);
-  const fogHigh = useDepth(22, 40);
-  const ridgeMid = useDepth(24, 90);
-  const ridgeNear = useDepth(36, 130);
-  const fogLow = useDepth(30, 70);
-  const foreground = useDepth(56, 180);
-  const dust = useDepth(44, 60);
+  const sky = useDepth(8, 20);
+  const sun = useDepth(16, 40);
+  const cloudsFar = useDepth(20, 60);
+  const cloudsNear = useDepth(38, 100);
+  const ridgeFar = useDepth(14, 70);
+  const fogHigh = useDepth(22, 50);
+  const ridgeMid = useDepth(24, 100);
+  const ridgeNear = useDepth(36, 140);
+  const fogLow = useDepth(30, 80);
+  const foreground = useDepth(56, 190);
+  const dust = useDepth(44, 70);
 
   return (
     <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-night">
-      <motion.div style={{ scale }} className="absolute inset-0 origin-center">
       <Layer x={sky.x} y={sky.y} className="absolute inset-[-6%]">
         <Sky />
       </Layer>
 
-      <Layer x={sun.x} y={sun.y} className="absolute inset-0">
-        <Sun />
-      </Layer>
+      <motion.div style={{ opacity: sunFade }} className="absolute inset-0">
+        <Layer x={sun.x} y={sun.y} className="absolute inset-0">
+          <Sun />
+        </Layer>
+      </motion.div>
 
       <Layer x={cloudsFar.x} y={cloudsFar.y} className="absolute inset-x-0 top-[6%] h-[38%]">
         <Clouds
@@ -123,7 +116,11 @@ export function Atmosphere() {
       <Layer x={dust.x} y={dust.y} className="absolute inset-0">
         <Particles />
       </Layer>
-      </motion.div>
+
+      <motion.div
+        style={{ opacity: dusk }}
+        className="absolute inset-0 bg-[radial-gradient(120%_90%_at_50%_-10%,#0a1f38_0%,#05101f_45%,#020509_100%)]"
+      />
 
       <GrainOverlay />
       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-night to-transparent" />
