@@ -8,6 +8,7 @@ import { navItems, profile } from "@/lib/data";
 import { EASE_OUT_QUART } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { DeerIcon } from "@/components/deer-icon";
 
 export function Navigation() {
   const reduce = useReducedMotion();
@@ -63,8 +64,8 @@ export function Navigation() {
           className="group flex items-center gap-2.5"
           aria-label="Back to top"
         >
-          <span className="flex size-9 items-center justify-center rounded-full bg-sunrise/15 font-display text-sm font-semibold text-dawn ring-1 ring-sunrise/25 transition-transform duration-500 ease-[var(--ease-out-quart)] group-hover:scale-105">
-            RM
+          <span className="flex size-9 items-center justify-center rounded-full bg-sunrise/15 text-dawn ring-1 ring-sunrise/25 transition-transform duration-500 ease-[var(--ease-out-quart)] group-hover:scale-105">
+            <DeerIcon className="size-5" />
           </span>
           <span className="hidden font-display text-sm font-medium tracking-wide text-white/90 sm:block">
             {profile.shortName}
