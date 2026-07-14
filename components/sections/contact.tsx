@@ -33,7 +33,7 @@ export function Contact() {
 
         <motion.h2
           variants={fadeUp}
-          className="max-w-3xl font-display text-4xl font-semibold leading-[1.05] tracking-tight text-white text-balance sm:text-6xl"
+          className="max-w-3xl font-display text-4xl font-semibold leading-[1.05] text-white text-balance sm:text-6xl"
         >
           Let&apos;s build something calm and reliable together.
         </motion.h2>

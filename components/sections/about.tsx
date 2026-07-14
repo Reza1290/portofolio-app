@@ -21,7 +21,7 @@ export function About() {
           viewport={viewportOnce}
           className="relative mx-auto w-full max-w-sm lg:sticky lg:top-32 lg:mx-0"
         >
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-white/10 bg-surface">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-surface">
             <Image
               src={mePhoto}
               alt={`Portrait of ${profile.name}`}
@@ -33,7 +33,7 @@ export function About() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-night/90 via-night/10 to-transparent" />
             <div className="grain absolute inset-0 opacity-[0.05] mix-blend-soft-light" />
-            <div className="absolute inset-x-4 bottom-4 flex items-center justify-between rounded-2xl border border-white/10 bg-surface px-4 py-3">
+            <div className="absolute inset-x-4 bottom-4 flex items-center justify-between rounded-2xl bg-night/55 px-4 py-3">
               <div className="flex flex-col">
                 <span className="text-sm font-medium text-white">
                   {profile.shortName}
@@ -78,13 +78,13 @@ export function About() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportOnce}
-            className="grid grid-cols-1 gap-px overflow-hidden rounded-3xl border border-white/10 bg-white/10 sm:grid-cols-2"
+            className="grid grid-cols-1 gap-3 sm:grid-cols-2"
           >
             {aboutFacts.map((fact) => (
               <motion.div
                 key={fact.label}
                 variants={fadeUp}
-                className="flex flex-col gap-1.5 bg-surface p-6"
+                className="flex flex-col gap-1.5 rounded-2xl bg-surface p-6"
               >
                 <dt className="font-mono text-xs uppercase tracking-[0.25em] text-sunrise/70">
                   {fact.label}

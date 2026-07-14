@@ -54,10 +54,8 @@ export function Navigation() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1, ease: EASE_OUT_QUART, delay: 0.2 }}
         className={cn(
-          "flex w-full max-w-6xl items-center justify-between rounded-full border px-5 py-2.5 transition-all duration-700 ease-[var(--ease-out-quart)] sm:px-6",
-          scrolled
-            ? "border-white/10 bg-surface shadow-lg shadow-night/40"
-            : "border-transparent bg-transparent",
+          "flex w-full max-w-6xl items-center justify-between rounded-full px-5 py-2.5 transition-all duration-700 ease-[var(--ease-out-quart)] sm:px-6",
+          scrolled ? "bg-surface shadow-lg shadow-night/40" : "bg-transparent",
         )}
       >
         <a
@@ -89,7 +87,7 @@ export function Navigation() {
                 {isActive ? (
                   <motion.span
                     layoutId="nav-pill"
-                    className="absolute inset-0 -z-10 rounded-full bg-white/8 ring-1 ring-white/10"
+                    className="absolute inset-0 -z-10 rounded-full bg-white/10"
                     transition={{ duration: 0.6, ease: EASE_OUT_QUART }}
                   />
                 ) : null}
@@ -113,7 +111,7 @@ export function Navigation() {
             onClick={() => setOpen((value) => !value)}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
-            className="flex size-10 items-center justify-center rounded-full border border-white/10 bg-surface text-white md:hidden"
+            className="flex size-10 items-center justify-center rounded-full bg-surface text-white md:hidden"
           >
             {open ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>

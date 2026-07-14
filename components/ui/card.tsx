@@ -28,7 +28,7 @@ function CardTitle({
   return (
     <h3
       className={cn(
-        "font-display text-xl font-semibold tracking-tight text-white",
+        "font-display text-xl font-semibold text-white",
         className,
       )}
       {...props}

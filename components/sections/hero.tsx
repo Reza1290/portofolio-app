@@ -45,7 +45,7 @@ export function Hero() {
           </motion.p>
           <motion.h1
             variants={fadeUp}
-            className="max-w-4xl font-display text-5xl font-semibold leading-[0.98] tracking-tight text-white text-balance sm:text-7xl lg:text-8xl"
+            className="max-w-4xl font-display text-5xl font-semibold leading-[1.02] text-white text-balance sm:text-7xl lg:text-8xl"
           >
             {profile.name}
           </motion.h1>

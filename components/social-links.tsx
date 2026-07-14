@@ -24,7 +24,7 @@ export function SocialLinks({ className }: { className?: string }) {
             {...(external
               ? { target: "_blank", rel: "noopener noreferrer" }
               : {})}
-            className="group flex size-11 items-center justify-center rounded-full border border-white/10 bg-surface text-white/70 transition-all duration-500 ease-[var(--ease-out-quart)] hover:-translate-y-0.5 hover:border-sunrise/30 hover:bg-surface-2 hover:text-white"
+            className="group flex size-11 items-center justify-center rounded-full bg-surface text-white/70 transition-all duration-500 ease-[var(--ease-out-quart)] hover:-translate-y-0.5 hover:bg-surface-2 hover:text-sunrise"
           >
             <Icon className="size-[18px] transition-transform duration-500 ease-[var(--ease-out-quart)] group-hover:scale-110" />
           </a>
