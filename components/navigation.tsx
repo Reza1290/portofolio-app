@@ -56,7 +56,7 @@ export function Navigation() {
         className={cn(
           "flex w-full max-w-6xl items-center justify-between rounded-full border px-5 py-2.5 transition-all duration-700 ease-[var(--ease-out-quart)] sm:px-6",
           scrolled
-            ? "border-white/10 bg-night/90 shadow-lg shadow-night/50"
+            ? "border-white/10 bg-surface shadow-lg shadow-night/40"
             : "border-transparent bg-transparent",
         )}
       >
@@ -113,7 +113,7 @@ export function Navigation() {
             onClick={() => setOpen((value) => !value)}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
-            className="flex size-10 items-center justify-center rounded-full border border-white/10 bg-deep/60 text-white md:hidden"
+            className="flex size-10 items-center justify-center rounded-full border border-white/10 bg-surface text-white md:hidden"
           >
             {open ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>
@@ -127,7 +127,7 @@ export function Navigation() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4, ease: EASE_OUT_QUART }}
-            className="fixed inset-0 -z-10 flex flex-col items-center justify-center gap-2 bg-night/95 md:hidden"
+            className="fixed inset-0 -z-10 flex flex-col items-center justify-center gap-2 bg-night md:hidden"
           >
             {navItems.map((item, index) => (
               <motion.a

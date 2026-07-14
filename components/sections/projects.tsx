@@ -15,7 +15,7 @@ import { Magnetic } from "@/components/magnetic";
 
 function ProjectVisual({ project }: { project: Project }) {
   return (
-    <div className="relative aspect-[16/11] w-full overflow-hidden rounded-[1.75rem] border border-white/10 shadow-2xl shadow-night/50">
+    <div className="relative aspect-[16/11] w-full overflow-hidden rounded-[1.75rem] border border-white/10">
       <div
         className="absolute inset-0"
         style={{
@@ -43,7 +43,7 @@ function ProjectVisual({ project }: { project: Project }) {
             {project.tech.slice(0, 4).map((tech) => (
               <span
                 key={tech}
-                className="rounded-full border border-white/10 bg-night/50 px-3 py-1 text-xs text-white/70"
+                className="rounded-full border border-white/10 bg-surface px-3 py-1 text-xs text-white/70"
               >
                 {tech}
               </span>
