@@ -1,8 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
 
+import mePhoto from "@/public/me.png";
 import { aboutFacts, aboutParagraphs, profile } from "@/lib/data";
 import { fadeUp, stagger, viewportOnce } from "@/lib/motion";
 import { Section } from "@/components/section";
@@ -19,21 +21,19 @@ export function About() {
           viewport={viewportOnce}
           className="relative mx-auto w-full max-w-sm lg:sticky lg:top-32 lg:mx-0"
         >
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-ocean/40 via-deep/60 to-night shadow-2xl shadow-night/60">
-            <div
-              className="absolute inset-0 opacity-70"
-              style={{
-                background:
-                  "radial-gradient(80% 60% at 30% 20%, rgba(79,137,212,0.35) 0%, transparent 60%), radial-gradient(70% 60% at 80% 90%, rgba(255,226,122,0.22) 0%, transparent 60%)",
-              }}
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-white/10 bg-surface">
+            <Image
+              src={mePhoto}
+              alt={`Portrait of ${profile.name}`}
+              fill
+              sizes="(max-width: 1024px) 100vw, 40vw"
+              placeholder="blur"
+              className="object-cover"
+              style={{ objectPosition: "62% 28%" }}
             />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span className="font-display text-[7rem] font-semibold text-white/90 drop-shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
-                RM
-              </span>
-            </div>
-            <div className="grain absolute inset-0 opacity-[0.06] mix-blend-soft-light" />
-            <div className="absolute inset-x-4 bottom-4 flex items-center justify-between rounded-2xl border border-white/10 bg-night/80 px-4 py-3">
+            <div className="absolute inset-0 bg-gradient-to-t from-night/90 via-night/10 to-transparent" />
+            <div className="grain absolute inset-0 opacity-[0.05] mix-blend-soft-light" />
+            <div className="absolute inset-x-4 bottom-4 flex items-center justify-between rounded-2xl border border-white/10 bg-surface px-4 py-3">
               <div className="flex flex-col">
                 <span className="text-sm font-medium text-white">
                   {profile.shortName}
@@ -84,7 +84,7 @@ export function About() {
               <motion.div
                 key={fact.label}
                 variants={fadeUp}
-                className="flex flex-col gap-1.5 bg-[#0b1e37] p-6"
+                className="flex flex-col gap-1.5 bg-surface p-6"
               >
                 <dt className="font-mono text-xs uppercase tracking-[0.25em] text-sunrise/70">
                   {fact.label}
