@@ -57,8 +57,8 @@ export const profile = {
   location: "Jakarta, Indonesia",
   email: "reza.muktasib@gmail.com",
   website: "https://mrezamuktasib.my.id",
-  linkedin: "https://www.linkedin.com/in/mrezamuktasib",
-  github: "https://github.com/mrezamuktasib",
+  linkedin: "https://www.linkedin.com/in/m-rezamuktasib",
+  github: "https://github.com/Reza1290",
   resume: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/muhamad-reza-muktasib-resume.pdf`,
   summary:
     "Backend-focused Full Stack Engineer building scalable web applications, APIs, and distributed systems with Node.js, TypeScript, Java, and Laravel across modern cloud infrastructure. I design secure backend services, microservice architectures, and real-time WebSocket/WebRTC systems for warehouse, healthcare, and online assessment platforms.",
