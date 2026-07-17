@@ -202,7 +202,7 @@ export const projects: Project[] = [
       "Designed a custom socket protocol connecting the extension to the Next.js dashboard.",
     ],
     tech: ["TypeScript", "Express", "MongoDB", "WebRTC", "Mediasoup", "Next.js"],
-    live: { label: "Documentation", href: "https://docs.procspy.link" },
+    live: { label: "Documentation", href: "https://docs.procspy.online" },
     accent: "#4f89d4",
   },
   {
