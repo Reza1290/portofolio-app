@@ -7,6 +7,7 @@ type Streak = {
   left: string;
   dx: number;
   dy: number;
+  angle: number;
   length: number;
   duration: number;
   delay: number;
@@ -14,9 +15,9 @@ type Streak = {
 };
 
 const streaks: Streak[] = [
-  { top: "10%", left: "4%", dx: 460, dy: 190, length: 120, duration: 1.1, delay: 2, repeatDelay: 9 },
-  { top: "6%", left: "58%", dx: 380, dy: 210, length: 100, duration: 1, delay: 6.5, repeatDelay: 12 },
-  { top: "22%", left: "34%", dx: 520, dy: 160, length: 150, duration: 1.3, delay: 11, repeatDelay: 14 },
+  { top: "10%", left: "4%", dx: 460, dy: 190, angle: 22.4, length: 120, duration: 1.1, delay: 2, repeatDelay: 9 },
+  { top: "6%", left: "58%", dx: 380, dy: 210, angle: 28.9, length: 100, duration: 1, delay: 6.5, repeatDelay: 12 },
+  { top: "22%", left: "34%", dx: 520, dy: 160, angle: 17.1, length: 150, duration: 1.3, delay: 11, repeatDelay: 14 },
 ];
 
 export function ShootingStars() {
@@ -26,7 +27,6 @@ export function ShootingStars() {
   return (
     <div className="absolute inset-0 overflow-hidden">
       {streaks.map((streak, index) => {
-        const angle = (Math.atan2(streak.dy, streak.dx) * 180) / Math.PI;
         return (
           <span
             key={index}
@@ -51,7 +51,7 @@ export function ShootingStars() {
             >
               <span
                 className="relative block"
-                style={{ transform: `rotate(${angle}deg)`, transformOrigin: "right center" }}
+                style={{ transform: `rotate(${streak.angle}deg)`, transformOrigin: "right center" }}
               >
                 <span
                   className="block h-px rounded-full"
