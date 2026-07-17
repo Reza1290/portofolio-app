@@ -49,22 +49,28 @@ export function PortfolioApp() {
 
   return (
     <div className="relative flex h-[100svh] flex-col overflow-hidden">
-      <header className="relative z-30 flex items-center justify-between gap-4 px-5 py-4 sm:px-8">
-        <button
-          type="button"
-          onClick={() => open("home")}
-          className="group flex items-center gap-2.5"
-          aria-label="Back to map"
-        >
-          <span className="flex size-9 items-center justify-center rounded-full bg-sunrise/15 text-dawn ring-1 ring-sunrise/25 transition-transform duration-500 ease-[var(--ease-out-quart)] group-hover:scale-105">
-            <DeerIcon className="size-5" />
-          </span>
-          <span className="hidden font-display text-sm font-medium tracking-wide text-white/90 sm:block">
-            {profile.shortName}
-          </span>
-        </button>
+      <AnimatePresence>
+        {active !== "home" ? (
+          <motion.header
+            key="topbar"
+            initial={{ opacity: 0, y: -24 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -24 }}
+            transition={{ duration: 0.5, ease: EASE_OUT_QUART }}
+            className="relative z-30 flex items-center justify-between gap-4 px-5 py-4 sm:px-8"
+          >
+            <button
+              type="button"
+              onClick={() => open("home")}
+              className="group flex items-center gap-2.5"
+              aria-label="Back to map"
+            >
+              <span className="flex size-9 items-center justify-center rounded-full bg-sunrise/15 text-dawn ring-1 ring-sunrise/25 transition-transform duration-500 ease-[var(--ease-out-quart)] group-hover:scale-105">
+                <DeerIcon className="size-5" />
+              </span>
+            </button>
 
-        <nav className="relative flex items-start gap-5 overflow-x-auto px-1 sm:gap-7">
+            <nav className="relative flex items-start gap-5 overflow-x-auto px-1 sm:gap-7">
           <span
             aria-hidden
             className="pointer-events-none absolute inset-x-1 top-[8px] h-px bg-white/10"
@@ -109,8 +115,10 @@ export function PortfolioApp() {
               </button>
             );
           })}
-        </nav>
-      </header>
+            </nav>
+          </motion.header>
+        ) : null}
+      </AnimatePresence>
 
       <div className="relative flex-1 overflow-hidden">
         <AnimatePresence mode="wait">
