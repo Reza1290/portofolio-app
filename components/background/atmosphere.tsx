@@ -16,6 +16,7 @@ import { Fog } from "./fog";
 import { Ridge, ridgePaths } from "./ridge";
 import { Trees } from "./trees";
 import { Particles } from "./particles";
+import { ShootingStars } from "./shooting-stars";
 import { GrainOverlay } from "./grain-overlay";
 
 type LayerProps = {
@@ -80,7 +81,7 @@ export function Atmosphere() {
         <Clouds
           className="inset-0 h-full"
           tint="rgba(210,228,252,0.4)"
-          animation="animate-drift-slow"
+          animation=""
         />
       </Layer>
 
@@ -88,9 +89,13 @@ export function Atmosphere() {
         <Clouds
           className="inset-0 h-full"
           tint="rgba(255,244,201,0.28)"
-          animation="animate-drift"
+          animation=""
         />
       </Layer>
+
+      <div className="absolute inset-x-0 top-0 h-[62%]">
+        <ShootingStars />
+      </div>
 
       <Layer x={ridgeFar.x} y={ridgeFar.y} className="absolute inset-0">
         <Ridge d={ridgePaths.far} fill="#1f406b" opacity={0.7} className="h-[70vh]" />
@@ -109,7 +114,7 @@ export function Atmosphere() {
       </Layer>
 
       <Layer x={fogLow.x} y={fogLow.y} className="absolute inset-x-0 bottom-[16%] h-[24%]">
-        <Fog className="inset-0 h-full" opacity={0.6} delay="-12s" />
+        <Fog className="inset-0 h-full" opacity={0.6} />
       </Layer>
 
       <Layer x={foreground.x} y={foreground.y} className="absolute inset-0">

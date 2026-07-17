@@ -1,17 +1,17 @@
 import { cn } from "@/lib/utils";
 
 const trees = [
-  { x: 60, scale: 1, delay: "0s" },
-  { x: 190, scale: 0.72, delay: "-2s" },
-  { x: 300, scale: 1.15, delay: "-4s" },
-  { x: 1140, scale: 0.9, delay: "-1s" },
-  { x: 1270, scale: 1.2, delay: "-3s" },
-  { x: 1380, scale: 0.8, delay: "-5s" },
+  { x: 60, scale: 1 },
+  { x: 190, scale: 0.72 },
+  { x: 300, scale: 1.15 },
+  { x: 1140, scale: 0.9 },
+  { x: 1270, scale: 1.2 },
+  { x: 1380, scale: 0.8 },
 ];
 
-function Pine({ delay }: { delay: string }) {
+function Pine() {
   return (
-    <g className="origin-bottom animate-sway" style={{ animationDelay: delay }}>
+    <g>
       <rect x="-4" y="120" width="8" height="40" fill="#040c17" />
       <path d="M0 0 L34 74 L-34 74 Z" fill="#040c17" />
       <path d="M0 34 L40 118 L-40 118 Z" fill="#050e1b" />
@@ -33,7 +33,7 @@ export function Trees({ className }: { className?: string }) {
           key={index}
           transform={`translate(${tree.x} ${200 - 160 * tree.scale}) scale(${tree.scale})`}
         >
-          <Pine delay={tree.delay} />
+          <Pine />
         </g>
       ))}
     </svg>
