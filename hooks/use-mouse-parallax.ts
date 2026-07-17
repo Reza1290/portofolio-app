@@ -9,9 +9,9 @@ import {
 } from "framer-motion";
 
 const springConfig: SpringOptions = {
-  stiffness: 60,
-  damping: 20,
-  mass: 0.6,
+  stiffness: 140,
+  damping: 26,
+  mass: 0.32,
 };
 
 export function useMouseParallax() {

@@ -27,7 +27,10 @@ type LayerProps = {
 
 function Layer({ x, y, className, children }: LayerProps) {
   return (
-    <motion.div style={{ x, y }} className={className}>
+    <motion.div
+      style={{ x, y, willChange: "transform" }}
+      className={className}
+    >
       {children}
     </motion.div>
   );
@@ -62,6 +65,7 @@ export function Atmosphere() {
 
   return (
     <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-night">
+      <div className="absolute -inset-x-[10%] -top-[10%] -bottom-[6%]">
       <Layer x={sky.x} y={sky.y} className="absolute inset-[-6%]">
         <Sky />
       </Layer>
@@ -116,6 +120,7 @@ export function Atmosphere() {
       <Layer x={dust.x} y={dust.y} className="absolute inset-0">
         <Particles />
       </Layer>
+      </div>
 
       <motion.div
         style={{ opacity: dusk }}
