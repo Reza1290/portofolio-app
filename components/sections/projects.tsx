@@ -5,7 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 
 import { projects, type Project } from "@/lib/data";
 import { GithubIcon } from "@/components/brand-icons";
-import { fadeUp, scaleReveal, stagger, viewportOnce } from "@/lib/motion";
+import { fadeUp, scaleReveal, stagger } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 import { Section } from "@/components/section";
 import { SectionHeading } from "@/components/section-heading";
@@ -74,8 +74,7 @@ export function Projects() {
               key={project.name}
               variants={stagger}
               initial="hidden"
-              whileInView="visible"
-              viewport={viewportOnce}
+              animate="visible"
               className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16"
             >
               <motion.div

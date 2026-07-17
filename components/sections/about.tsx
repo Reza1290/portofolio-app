@@ -6,7 +6,7 @@ import { Sparkles } from "lucide-react";
 
 import mePhoto from "@/public/me.png";
 import { aboutFacts, aboutParagraphs, profile } from "@/lib/data";
-import { fadeUp, stagger, viewportOnce } from "@/lib/motion";
+import { fadeUp, stagger } from "@/lib/motion";
 import { Section } from "@/components/section";
 import { SectionHeading } from "@/components/section-heading";
 
@@ -17,8 +17,7 @@ export function About() {
         <motion.div
           variants={fadeUp}
           initial="hidden"
-          whileInView="visible"
-          viewport={viewportOnce}
+          animate="visible"
           className="relative mx-auto w-full max-w-sm lg:sticky lg:top-32 lg:mx-0"
         >
           <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-surface">
@@ -58,8 +57,7 @@ export function About() {
           <motion.div
             variants={stagger}
             initial="hidden"
-            whileInView="visible"
-            viewport={viewportOnce}
+            animate="visible"
             className="flex flex-col gap-6"
           >
             {aboutParagraphs.map((paragraph, index) => (
@@ -76,8 +74,7 @@ export function About() {
           <motion.dl
             variants={stagger}
             initial="hidden"
-            whileInView="visible"
-            viewport={viewportOnce}
+            animate="visible"
             className="border-t border-white/10"
           >
             {aboutFacts.map((fact) => (

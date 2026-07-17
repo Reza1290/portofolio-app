@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Award, BadgeCheck } from "lucide-react";
 
 import { achievements, certifications } from "@/lib/data";
-import { fadeUp, staggerFast, viewportOnce } from "@/lib/motion";
+import { fadeUp, staggerFast } from "@/lib/motion";
 import { Section } from "@/components/section";
 import { SectionHeading } from "@/components/section-heading";
 
@@ -29,8 +29,7 @@ export function Certifications() {
           <motion.ul
             variants={staggerFast}
             initial="hidden"
-            whileInView="visible"
-            viewport={viewportOnce}
+            animate="visible"
             className="border-t border-white/10"
           >
             {certifications.map((cert) => (
@@ -63,8 +62,7 @@ export function Certifications() {
           <motion.ul
             variants={staggerFast}
             initial="hidden"
-            whileInView="visible"
-            viewport={viewportOnce}
+            animate="visible"
             className="border-t border-white/10"
           >
             {achievements.map((item) => (

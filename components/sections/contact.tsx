@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, Download, Mail } from "lucide-react";
 
 import { profile } from "@/lib/data";
-import { fadeUp, stagger, viewportOnce } from "@/lib/motion";
+import { fadeUp, stagger } from "@/lib/motion";
 import { Section } from "@/components/section";
 import { Button } from "@/components/ui/button";
 import { SocialLinks } from "@/components/social-links";
@@ -16,8 +16,7 @@ export function Contact() {
       <motion.div
         variants={stagger}
         initial="hidden"
-        whileInView="visible"
-        viewport={viewportOnce}
+        animate="visible"
         className="panel relative flex flex-col items-center gap-10 overflow-hidden rounded-[2.5rem] px-6 py-20 text-center sm:px-16"
       >
         <div className="absolute -top-24 left-1/2 -z-10 size-72 -translate-x-1/2 rounded-full bg-sunrise/15 blur-[100px]" />
