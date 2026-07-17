@@ -92,6 +92,15 @@
   }
 }
 
+@keyframes signal {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -14;
+  }
+}
+
 :root {
   color-scheme: dark;
 }
