@@ -64,7 +64,11 @@ export function PortfolioApp() {
           </span>
         </button>
 
-        <nav className="flex items-center gap-1 overflow-x-auto">
+        <nav className="relative flex items-start gap-5 overflow-x-auto px-1 sm:gap-7">
+          <span
+            aria-hidden
+            className="pointer-events-none absolute inset-x-1 top-[8px] h-px bg-white/10"
+          />
           {navItems.map((item) => {
             const id = item.href.replace("#", "") as ViewId;
             const isActive = active === id;
@@ -73,19 +77,35 @@ export function PortfolioApp() {
                 key={item.href}
                 type="button"
                 onClick={() => open(id)}
-                className={cn(
-                  "relative shrink-0 rounded-full px-3.5 py-2 text-sm transition-colors duration-500",
-                  isActive ? "text-white" : "text-white/55 hover:text-white/90",
-                )}
+                aria-current={isActive ? "page" : undefined}
+                className="group relative flex shrink-0 flex-col items-center gap-1.5"
               >
-                {isActive ? (
-                  <motion.span
-                    layoutId="view-pill"
-                    className="absolute inset-0 -z-10 rounded-full bg-white/10"
-                    transition={{ duration: 0.6, ease: EASE_OUT_QUART }}
+                <span className="relative flex size-[17px] items-center justify-center">
+                  <span
+                    className={cn(
+                      "absolute rounded-full bg-sunrise/40 blur-[3px] transition-all duration-500",
+                      isActive ? "size-4" : "size-0",
+                    )}
                   />
-                ) : null}
-                {item.label}
+                  <span
+                    className={cn(
+                      "relative rounded-full transition-all duration-500",
+                      isActive
+                        ? "size-2.5 bg-dawn shadow-[0_0_10px_2px_rgba(255,226,122,0.65)]"
+                        : "size-1.5 bg-white/40 group-hover:bg-white/80",
+                    )}
+                  />
+                </span>
+                <span
+                  className={cn(
+                    "text-xs transition-colors duration-500",
+                    isActive
+                      ? "text-white"
+                      : "text-white/45 group-hover:text-white/85",
+                  )}
+                >
+                  {item.label}
+                </span>
               </button>
             );
           })}
