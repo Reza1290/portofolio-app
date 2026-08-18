@@ -24,6 +24,7 @@ export type Project = {
   live?: { label: string; href: string };
   repo?: { label: string; href: string };
   accent: string;
+  image?: string;
 };
 
 export type SkillGroup = {
@@ -190,6 +191,40 @@ export const experiences: Experience[] = [
 
 export const projects: Project[] = [
   {
+    name: "Heron WMS",
+    tagline: "Enterprise warehouse management system",
+    period: "Aug 2025 - Present",
+    description:
+      "Scalable warehouse operations platform supporting batch management across 24+ active warehouses, designed for high-volume inventory traceability and operational consistency.",
+    highlights: [
+      "Implemented batch management across 24+ active warehouses improving inventory traceability.",
+      "Built backend services for real-time synchronization of warehouse logistics and product batch data.",
+      "Supported tens of thousands of monthly transactions with focus on reliability and scalability.",
+      "Integrated with SAP and ERP ecosystems for seamless enterprise data flow.",
+    ],
+    tech: ["Node.js", "TypeScript", "PostgreSQL", "SAP", "ERP", "Microservices"],
+    repo: { label: "Explore System", href: "#" },
+    accent: "#4f89d4",
+    image: "/heron-wms.png",
+  },
+  {
+    name: "Exzam.id",
+    tagline: "Multi-tenant online exam platform",
+    period: "Jun 2024 - Dec 2025",
+    description:
+      "Multi-tenancy online examination platform for schools and universities, featuring a custom internal component library and resilient Laravel backend with integrated automated proctoring.",
+    highlights: [
+      "Built a custom internal UI component library that reduced development time by 40%.",
+      "Managed multi-tenant exam workflows, authentication, and subscription logic in Laravel.",
+      "Integrated Procspy as automated proctoring engine for secure monitoring.",
+      "Achieved stable performance for up to 120 concurrent users with optimized database queries.",
+    ],
+    tech: ["React", "Laravel", "MySQL", "Midtrans", "Multi-tenancy"],
+    live: { label: "Visit exzam.id", href: "https://exzam.id" },
+    accent: "#ffe27a",
+    image: "/exzam-id.png",
+  },
+  {
     name: "Procspy",
     tagline: "Open-source automated proctoring",
     period: "Jun 2024 - Present",
@@ -203,23 +238,40 @@ export const projects: Project[] = [
     ],
     tech: ["TypeScript", "Express", "MongoDB", "WebRTC", "Mediasoup", "Next.js"],
     live: { label: "Documentation", href: "https://docs.procspy.online" },
-    accent: "#4f89d4",
+    accent: "#3aa86c",
+    image: "/procspy.svg",
   },
   {
-    name: "Exzam.id",
-    tagline: "Multi-tenant online exam platform",
-    period: "Jun 2024 - Present",
+    name: "Biomedilab",
+    tagline: "Healthcare laboratory information system",
+    period: "Aug 2025 - Present",
     description:
-      "A multi-tenancy online examination platform for institutions, pairing a custom internal component library with a resilient Laravel backend.",
+      "Optimized API performance and database efficiency for critical healthcare laboratory workflows, ensuring uninterrupted medical diagnostics operations.",
     highlights: [
-      "Built a custom internal UI component library that reduced development time by 40%.",
-      "Managed multi-tenant exam workflows, authentication, and subscription logic in Laravel.",
-      "Integrated Procspy as the automated proctoring engine for secure monitoring.",
-      "Achieved stable performance for up to 120 concurrent users with optimized queries.",
+      "Improved API response times and database query efficiency under strict uptime requirements.",
+      "Developed service integrations for lab result reporting and patient data management.",
+      "Implemented secure HIPAA-compliant data handling for sensitive medical information.",
+      "Built microservice APIs using Java Spring for modular system architecture.",
     ],
-    tech: ["React", "Laravel", "MySQL", "Midtrans", "Multi-tenancy"],
-    live: { label: "Visit exzam.id", href: "https://exzam.id" },
-    accent: "#ffe27a",
+    tech: ["Java", "Spring", "REST API", "Microservices", "PostgreSQL"],
+    accent: "#e74c3c",
+    image: "/biomedilab.svg",
+  },
+  {
+    name: "Mufko App",
+    tagline: "Production fintech application",
+    period: "Feb 2025 - Aug 2025",
+    description:
+      "Maintained backend services for a production fintech application serving 4,100+ daily active users with robust cloud infrastructure on AWS.",
+    highlights: [
+      "Optimized API response times and database performance for consistent user experience.",
+      "Managed AWS infrastructure, Docker-based environments, and CI/CD deployment pipelines.",
+      "Monitored backend services to ensure 99.9% uptime and production stability.",
+      "Handled real-time transaction processing for financial applications.",
+    ],
+    tech: ["Laravel", "AWS", "Docker", "CI/CD", "MySQL"],
+    accent: "#9b59b6",
+    image: "/mufko-app.svg",
   },
 ];
 
