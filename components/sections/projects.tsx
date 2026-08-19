@@ -1,9 +1,9 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
-import { ArrowLeft, ArrowRight, ArrowUpRight, ExternalLink } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Download, ExternalLink } from "lucide-react";
 
 import { projects, type Project } from "@/lib/data";
 import { GithubIcon } from "@/components/brand-icons";
@@ -13,6 +13,7 @@ import { Section } from "@/components/section";
 import { SectionHeading } from "@/components/section-heading";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { exportSlideToPDF } from "@/lib/pdf-export";
 
 function SlideVisual({ project }: { project: Project }) {
   return (
@@ -123,6 +124,9 @@ export function Projects() {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(1);
   const reduceMotion = useReducedMotion();
+  const [loading, setLoading] = useState(false);
+
+  const slideRef = useRef<HTMLDivElement>(null);
 
   const total = projects.length;
   const active = projects[index];
@@ -155,6 +159,30 @@ export function Projects() {
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
   }, [nextSlide, prevSlide, reduceMotion]);
+
+  const handleDownloadPDF = useCallback(async () => {
+    setLoading(true);
+    try {
+      const container = document.querySelector('.project-slide-stage');
+      if (!container || !slideRef.current) {
+        throw new Error('Slide not found');
+      }
+      await exportSlideToPDF({
+        element: slideRef.current,
+        projectName: active.name,
+        slideIndex: index + 1,
+        totalSlides: total,
+        onProgress: (msg) => {
+          console.log(`[PDF] ${msg}`);
+        }
+      });
+    } catch (error) {
+      console.error('[PDF Export Error]', error);
+      alert(error instanceof Error ? error.message : 'Failed to generate PDF. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  }, [active, index, total]);
 
   const slideVariants = reduceMotion
     ? {
@@ -197,7 +225,10 @@ export function Projects() {
       >
         {/* Slide stage */}
         <motion.div variants={fadeUp} className="relative">
-          <div className="grid items-stretch gap-6 lg:grid-cols-[1.15fr_1fr] lg:gap-8">
+          <div
+            ref={slideRef}
+            className="project-slide-stage grid items-stretch gap-6 lg:grid-cols-[1.15fr_1fr] lg:gap-8"
+          >
             {/* Visual */}
             <div className="relative">
               <AnimatePresence mode="wait" custom={direction}>
@@ -326,17 +357,40 @@ export function Projects() {
               </span>
             </div>
 
-            {active.live ? (
-              <a
-                href={active.live.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 text-sm text-white/50 transition-colors hover:text-sunrise"
+            <div className="flex items-center gap-3">
+              {active.live ? (
+                <a
+                  href={active.live.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-2 text-sm text-white/50 transition-colors hover:text-sunrise"
+                >
+                  <ExternalLink className="size-4" />
+                  <span>Open project</span>
+                </a>
+              ) : null}
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleDownloadPDF}
+                disabled={loading || total <= 1}
+                aria-label="Download slide as PDF"
               >
-                <ExternalLink className="size-4" />
-                <span>Open project</span>
-              </a>
-            ) : null}
+                {loading ? (
+                  <>
+                    <svg className="animate-spin size-4" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="4 4"/>
+                    </svg>
+                    <span>Generating...</span>
+                  </>
+                ) : (
+                  <>
+                    <Download className="size-4" />
+                    <span>Download Slide</span>
+                  </>
+                )}
+              </Button>
+            </div>
           </div>
 
           {/* Thumbnail strip */}
